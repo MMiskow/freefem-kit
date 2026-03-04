@@ -1,0 +1,637 @@
+{
+  "abs": {
+    "name": "abs",
+    "description": "Return the absolute value.",
+    "signature": "real a = abs(b);"
+  },
+  "acos": {
+    "name": "acos",
+    "description": "arccos function.",
+    "signature": "real theta = acos(x);"
+  },
+  "acosh": {
+    "name": "acosh",
+    "description": "Inverse hyperbolic cosine function.",
+    "signature": "real theta = acosh(x);"
+  },
+  "adaptmesh": {
+    "name": "adaptmesh",
+    "description": "Mesh adaptation function.",
+    "signature": "mesh Thnew = adaptmesh(Th, [fx, fy], hmin=HMin, hmax=HMax, err=Err, errg=ErrG, nbvx=NbVx, nbsmooth=NbSmooth, nbjacoby=NbJacoby, ratio=Ratio, omega=Omega, iso=Iso, abserror=AbsError, cutoff=CutOff, verbosity=Verbosity, inquire=Inquire, splitpbedge=SplitPbEdge, maxsubdiv=MaxSubdiv, rescaling=Rescaling, keepbackvertices=KeepBackVertices, IsMetric=isMetric, power=Power, thetamax=ThetaMax, splitin2=SplitIn2, metric=Metric, nomeshgeneration=NoMeshGeneration, periodic=Periodic);"
+  },
+  "adj": {
+    "name": "adj",
+    "description": "Adjacent triangle of the triangle k by the edge e",
+    "signature": "int T = Th[k].adj(e);"
+  },
+  "affinecg": {
+    "name": "affinecg",
+    "description": "Affine conjugate gradient solver",
+    "signature": "int Conv = AffineCG(A, x, precon=Precon, nbiter=NbIter, eps=Eps, veps=VEps, stop=Stop);"
+  },
+  "affinegmres": {
+    "name": "affinegmres",
+    "description": "Affine GMRES solver",
+    "signature": "int Conv = AffineGMRES(A, x, precon=Precon, nbiter=NbIter, eps=Eps, veps=VEps, stop=Stop);"
+  },
+  "arg": {
+    "name": "arg",
+    "description": "Return the argument of a complex number.",
+    "signature": "real a = arg(c);"
+  },
+  "asin": {
+    "name": "asin",
+    "description": "arcsin function.",
+    "signature": "real theta = asin(x);"
+  },
+  "asinh": {
+    "name": "asinh",
+    "description": "Inverse hyperbolic sine function.",
+    "signature": "real theta = asinh(x);"
+  },
+  "assert": {
+    "name": "assert",
+    "description": "Verify if a condition is true (same as C), if not the program stops.",
+    "signature": "assert(x==0)"
+  },
+  "atan": {
+    "name": "atan",
+    "description": "arctan(x) function.",
+    "signature": "real theta = atan(x);"
+  },
+  "atan2": {
+    "name": "atan2",
+    "description": "arctan(y/x) function, returning the correct sign for theta.",
+    "signature": "real theta = atan2(y, x)"
+  },
+  "atanh": {
+    "name": "atanh",
+    "description": "atanh function.",
+    "signature": "real theta = atanh(x);"
+  },
+  "atoi": {
+    "name": "atoi",
+    "description": "Convert a string to an integer.",
+    "signature": "int a = atoi(s);"
+  },
+  "atof": {
+    "name": "atof",
+    "description": "Convert a string to a real.",
+    "signature": "real a = atof(s);"
+  },
+  "bfgs": {
+    "name": "bfgs",
+    "description": "BFGS optimization algorithm."
+  },
+  "buildmesh": {
+    "name": "buildmesh",
+    "description": "Build a 2D mesh using border elements.",
+    "signature": "mesh Th = buildmesh(b1(nn) + b2(nn) + b3(nn) + b4(nn),[points=Points], ][nbvx=Nbvx], [fixedborder=FixedBorder]);"
+  },
+  "ceil": {
+    "name": "ceil",
+    "description": "Round fractions up of x.",
+    "signature": "int c = ceil(x);"
+  },
+  "change": {
+    "name": "change",
+    "description": "Change a property of a mesh.",
+    "signature": "int[int] L = [0, 1]; Thnew = change(Th, label=L);"
+  },
+  "checkmovemesh": {
+    "name": "checkmovemesh",
+    "description": "Check a movemesh without mesh generation.",
+    "signature": "real minT = checkmovemesh(Th, [Dx, Dy]);"
+  },
+  "chi": {
+    "name": "chi",
+    "description": "Characteristic function of a mesh.",
+    "signature": "int IsInMesh = chi(Th)(x, y);"
+  },
+  "clock": {
+    "name": "clock",
+    "description": "Get the clock in second.",
+    "signature": "real t = clock();"
+  },
+  "complexeigenvalue": {
+    "name": "complexeigenvalue",
+    "description": "Same as EigenValue for complex problems.",
+    "signature":"int k = complexEigenValue(A, B, nev=Nev, sigma=Sigma);"
+  },
+  "conj": {
+    "name": "conj",
+    "description": "Calculate the conjuguate of a complex number.",
+    "signature": "complex C1 = 1 + i; complex C2 = conj(C1);"
+  },
+  "convect": {
+    "name": "convect",
+    "description": "Characteristics Galerkin method.",
+    "signature": "real cgm = convect([Ux, Uy], dt, c); real cgm = convect([Ux, Uy, Uz], dt, c);"
+  },
+  "copysign": {
+    "name": "copysign",
+    "description": "C++ copysign function.",
+    "signature": "real s = copysign(a, b);"
+  },
+  "cos": {
+    "name": "cos",
+    "description": "cos function.",
+    "signature": "real x = cos(theta);"
+  },
+  "cosh": {
+    "name": "cosh",
+    "description": "cosh function.",
+    "signature": "real x = cosh(theta);"
+  },
+  "diffnp": {
+    "name": "diffnp",
+    "description": "Arithmetic useful function.",
+    "signature": "diffnp(a, b) = (a<0)&(0<b) ? (b-a) : 0"
+  },
+  "diffpos": {
+    "name": "diffpos",
+    "description": "Arithmetic useful function.",
+    "signature": "diffpos(a, b) = max(b-a, 0);"
+  },
+  "dist": {
+    "name": "dist",
+    "description": "Arithmetic useful function.",
+    "signature": "dist(a, b) = sqrt(a^2 + b^2); dist(a, b, c) = sqrt(a^2 + b^2 + c^2);"
+  },
+  "dumptable": {
+    "name": "dumptable",
+    "description": "Show all types, operators and functions in FreeFEM.",
+    "signature": "dumptable(out);"
+  },
+  "dx": {
+    "name": "dx",
+    "description": "x derivative.",
+    "signature": "Uh up = dx(u);"
+  },
+  "dxx": {
+    "name": "dxx",
+    "description": "x double derivative.",
+    "signature": "Uh upp = dxx(u);"
+  },
+  "dxy": {
+    "name": "dxy",
+    "description": "xy derivative.",
+    "signature": "Uh upp = dxy(u);"
+  },
+  "dxz": {
+    "name": "dxz",
+    "description": "xz derivative.",
+    "signature": "Uh upp = dxz(u);"
+  },
+  "dy": {
+    "name": "dy",
+    "description": "y derivative.",
+    "signature": "Uh up = dy(u);"
+  },
+  "dyx": {
+    "name": "dyx",
+    "description": "yx derivative.",
+    "signature": "Uh upp = dyx(u);"
+  },
+  "dyy": {
+    "name": "dyy",
+    "description": "y double derivative.",
+    "signature": "Uh upp = dyy(u);"
+  },
+  "dyz": {
+    "name": "dyz",
+    "description": "yz derivative.",
+    "signature": "Uh upp = dyz(u);"
+  },
+  "dz": {
+    "name": "dz",
+    "description": "z derivative.",
+    "signature": "Uh up = dz(u);"
+  },
+  "dzx": {
+    "name": "dzx",
+    "description": "zx derivative.",
+    "signature": "Uh upp = dzx(u);"
+  },
+  "dzy": {
+    "name": "dzy",
+    "description": "zy derivative.",
+    "signature": "Uh upp = dzy(u);"
+  },
+  "dzz": {
+    "name": "dzz",
+    "description": "z double derivative.",
+    "signature": "Uh upp = dzz(u);"
+  },
+  "eigenvalue": {
+    "name": "eigenvalue",
+    "description": "Compute the generalized eigenvalue of Au=lambda Bu. The shifted-inverse method is used by default with sigma=sigma, the shift of the method. The function EigenValue can be used for either matrices or functions returning a matrix vector product.",
+    "signature": "int k = EigenValue(A,B,nev= , sigma= );"
+  },
+  "emptymesh": {
+    "name": "emptymesh",
+    "description": "Build an empty mesh.",
+    "signature": "mesh eTh = emptymesh(Th, ssd);"
+  },
+  "erf": {
+    "name": "erf",
+    "description": "Error function",
+    "signature": "real err = erf(x);"
+  },
+  "erfc": {
+    "name": "erfc",
+    "description": "Complementary of the error function",
+    "signature": "real errc = erfc(x);"
+  },
+  "exec": {
+    "name": "exec",
+    "description": "Execute an external command.",
+    "signature": "int v = exec(command);"
+  },
+  "exit": {
+    "name": "exit",
+    "description": "Exit function, equivalent to return.",
+    "signature": "exit(N);"
+  },
+  "exp": {
+    "name": "exp",
+    "description": "Exponential function.",
+    "signature": "real a = exp(b);"
+  },
+  "fdim": {
+    "name": "fdim",
+    "description": "Positive difference (cmath function).",
+    "signature": "real fd = fdim(a, b);"
+  },
+  "floor": {
+    "name": "floor",
+    "description": "Floor function.",
+    "signature": "real a = floor(b);"
+  },
+  "fmax": {
+    "name": "fmax",
+    "description": "Maximum (cmath function).",
+    "signature": "real Max = fmax(a, b);"
+  },
+  "fmin": {
+    "name": "fmin",
+    "description": "Minimum (cmath function).",
+    "signature": "real Min = fmin(a, b);"
+  },
+  "fmod": {
+    "name": "fmod",
+    "description": "Remainder of a/b (cmath function).",
+    "signature": "real Mod = fmod(a, b);"
+  },
+  "imag": {
+    "name": "imag",
+    "description": "Imaginary part of a complex number.",
+    "signature": "complex c = 1. + i; real Im = imag(c);"
+  },
+  "int1d": {
+    "name": "int1d",
+    "description": "1D integral.",
+    "signature": "int1d(Th, [Label], [qfe=Qfe], [qforder=Qforder])(expression)"
+  },
+  "int2d": {
+    "name": "int2d",
+    "description": "2D integral.",
+    "signature": "int2d(Th, [Region], [qft=Qft], [qforder=Qforder])(expression)"
+  },
+  "int3d": {
+    "name": "int3d",
+    "description": "3D integral.",
+    "signature": "int3d(Th, [Region], [qfV=QfV], [qforder=Qforder])(expression)"
+  },
+  "intalledges": {
+    "name": "intalledges",
+    "description": "Integral on all edges.",
+    "signature": "intalledges(Th, [Region])(expression)"
+  },
+  "intallfaces": {
+    "name": "intallfaces",
+    "description": "Integral on all faces.",
+    "signature": "intallfaces(Th, [Region])(expression)"
+  },
+  "interpolate": {
+    "name": "interpolate",
+    "description": "Interpolation operator from a finite element space to another.",
+    "signature": "matrix I = interpolate(Wh, Vh, [inside=Inside], [t=T], [op=Op], [UVc=UVC]);"
+  },
+  "invdiff": {
+    "name": "invdiff",
+    "description": "Arithmetic useful function.",
+    "signature": "invdiff(a, b) = (abs(a-b) < 10^(-30)) ? (a-b) : 1/(a-b); invdiff(a, b, e) = (abs(a-b) < e) ? (a-b) : 1/(a-b)"
+  },
+  "invdiffnp": {
+    "name": "invdiffnp",
+    "description": "Arithmetic useful function.",
+    "signature": "invdiffnp(a, b) = (a<0)&(0<b) ? 1/(b-a) : 0"
+  },
+  "invdiffpos": {
+    "name": "invdiffpos",
+    "description": "Arithmetic useful function.",
+    "signature": "invdiffpos(a, b) = (a<b) ? 1./(b-a) : 0"
+  },
+  "isinf": {
+    "name": "isinf",
+    "description": "The C++ isInf function.",
+    "signature": "bool b = isInf(a);"
+  },
+  "isnan": {
+    "name": "isnan",
+    "description": "The C++ isNan function.",
+    "signature": "bool b = isNaN(a);"
+  },
+  "isnormal": {
+    "name": "isnormal",
+    "description": "The C++ isNormal function.",
+    "signature": "bool b = isNormal(a);"
+  },
+  "j0": {
+    "name": "j0",
+    "description": "Bessel function of first kind, order 0.",
+    "signature": "real b = j0(x);"
+  },
+  "j1": {
+    "name": "j1",
+    "description": "Bessel function of first kind, order 1.",
+    "signature": "real b = j1(x);"
+  },
+  "jn": {
+    "name": "jn",
+    "description": "Bessel function of first kind, order n.",
+    "signature": "real b = jn(n, x);"
+  },
+  "jump": {
+    "name": "jump",
+    "description": "Jump function across an edge.",
+    "signature": "jump(c)"
+  },
+  "linearcg": {
+    "name": "linearcg",
+    "description": "Linear CG solver",
+    "signature": "int Conv = LinearCG(A, x, precon=Precon, nbiter=NbIter, eps=Eps, veps=VEps, stop=Stop);"
+    
+  },
+  "lineargmres": {
+    "name": "lineargmres",
+    "description": "Linear GMRES solver",
+    "signature": "int Conv = LinearGMRES(A, x, precon=Precon, nbiter=NbIter, eps=Eps, veps=VEps, stop=Stop);"
+  },
+  "lgamma": {
+    "name": "lgamma",
+    "description": "Natural logarithm of the absolute value of the Gamma function of x.",
+    "signature": "real lg = lgamma(x);"
+  },
+  "log": {
+    "name": "log",
+    "description": "Natural logarithm.",
+    "signature": "real l = log(x);"
+  },
+  "log10": {
+    "name": "log10",
+    "description": "Common logarithm.",
+    "signature": "real l = log10(x);"
+  },
+  "lrint": {
+    "name": "lrint",
+    "description": "Integer value nearest to x.",
+    "signature": "int l = lrint(a);"
+  },
+  "lround": {
+    "name": "lround",
+    "description": "Round a value, and return an integer value.",
+    "signature": "int l = lround(a);"
+  },
+  "ltime": {
+    "name": "ltime",
+    "description": "Return the current time since the Epoch.",
+    "signature": "int t = ltime();"
+  },
+  "max": {
+    "name": "max",
+    "description": "Maximum value of two, three or four values.",
+    "signature": "real m = max(a, b); real m = max(a, b, c); real m = max(a, b, c, d);"
+  },
+  "min": {
+    "name": "min",
+    "description": "Minimum value of two, three or four values.",
+    "signature": "real m = min(a, b); real m = min(a, b, c); real m = min(a, b, c, d);"
+  },
+  "movemesh": {
+    "name": "movemesh",
+    "description": "Move a mesh.",
+    "signature": "mesh MovedTh = movemesh(Th, [Dx, Dy]); mesh3 MovedTh = movemesh(Th, [Dx, Dy, Dz], [region=Region], [label=Label], [facemerge=FaceMerge], [ptmerge=PtMerge], [orientation=Orientation]);"
+  },
+  "nan": {
+    "name": "nan",
+    "description": "C++ nan function.",
+    "signature": "real n = NaN([String]);"
+  },
+  "nlcg": {
+    "name": "nlcg",
+    "description": "Non-linear conjugate gradient.",
+    "signature": "int Conv = NLCG(DJ, u, nbiter=NbIter, eps=Eps);"
+  },
+  "on": {
+    "name": "on",
+    "description": "Dirichlet condition function.",
+    "signature": "on(Label, u=uD)"
+  },
+  "plot": {
+    "name": "plot",
+    "description": "Plot meshes and results.",
+    "signature": "plot([Th], [u], [[Ux, Uy, Uz]], [wait=Wait], [ps=PS], [coef=Coef], [fill=Fill], cmm=[Cmm], [value=Value], [aspectratio=AspectRatio], [bb=Bb], [nbiso=NbIso], [nbarrow=NbArrow], [viso=VIso], [varrow=VArrow], [bw=Bw], [grey=Grey], [hsv=Hsv], [boundary=Boundary], [dim=Dim], [prev=Prev], [WindowIndex=WI]);"
+  },
+  "polar": {
+    "name": "polar",
+    "description": "Polar coordinates.",
+    "signature": "complex p = polar(a, b);"
+  },
+  "pow": {
+    "name": "pow",
+    "description": "Power function.",
+    "signature": "real p = pow(a, b);"
+  },
+  "projection": {
+    "name": "projection",
+    "description": "Arithmetic useful function.",
+    "signature": "real p = projection(a, b, x);"
+  },
+  "randinit": {
+    "name": "randinit",
+    "description": "Initialize the state vector by using a seed.",
+    "signature": "randinit(seed);"
+  },
+  "randint31": {
+    "name": "randint31",
+    "description": "Generate unsigned int (31 bits) random number.",
+    "signature": "int r = randint31();"
+  },
+  "randint32": {
+    "name": "randint32",
+    "description": "Generate unsigned int (32 bits) random number.",
+    "signature": "int r = randint32();"
+  },
+  "randreal1": {
+    "name": "randreal1",
+    "description": "Generate uniform real in [0, 1] (32 bits).",
+    "signature": "real r = randreal1();"
+  },
+  "randreal2": {
+    "name": "randreal2",
+    "description": "Generate uniform real in [0, 1) (32 bits).",
+    "signature": "real r = randreal2();"
+  },
+  "randreal3": {
+    "name": "randreal3",
+    "description": "Generate uniform real in (0, 1) (32 bits).",
+    "signature": "real r = randreal3();"
+  },
+  "randres53": {
+    "name": "randres53",
+    "description": "Generate uniform real in [0, 1) (53 bits).",
+    "signature": "real r = randres53();"
+  },
+  "readmesh": {
+    "name": "readmesh",
+    "description": "Read a 2D mesh file at different formats (see Mesh Generation).",
+    "signature": "mesh Th = readmesh(MeshFileName);"
+  },
+  "readmesh3": {
+    "name": "readmesh3",
+    "description": "Read a 3D mesh file at different formats (see Mesh Generation).",
+    "signature": "mesh3 Th = readmesh3(MeshFileName);"
+  },
+  "real": {
+    "name": "real",
+    "description": "Return the real part of a complex number.",
+    "signature": "real r = real(c);"
+  },
+  "rint": {
+    "name": "rint",
+    "description": "Integer value nearest to x (real value).",
+    "signature": "real r = rint(a);"
+  },
+  "round": {
+    "name": "round",
+    "description": "Round a value (real value).",
+    "signature": "real r = round(a);"
+  },
+  "savemesh": {
+    "name": "savemesh",
+    "description": "Save a 2D or 3D mesh in different formats (see Mesh Generation 2D and Mesh Generation 3D).",
+    "signature": "savemesh(Th, MeshFileName);"
+  },
+  "set": {
+    "name": "set",
+    "description": "Set a property to a matrix. See matrix.",
+    "signature": "set(A, solver=Solver, [tgv=Tgv], [tolerance=Tolerance], [factorize=Factorize])"
+  },
+  "sign": {
+    "name": "sign",
+    "description": "Sign of a value.",
+    "signature": "int s = sign(a);"
+  },
+  "signbit": {
+    "name": "signbit",
+    "description": "C++ signbit function",
+    "signature": "int s = signbit(a);"
+  },
+  "sin": {
+    "name": "sin",
+    "description": "sin function.",
+    "signature": "real x = sin(theta);"
+  },
+  "sinh": {
+    "name": "sinh",
+    "description": "sinh function.",
+    "signature": "real x = sinh(theta);"
+  },
+  "sort": {
+    "name": "sort",
+    "description": "Sort two array in parallel",
+    "signature": "sort(A, B);"
+  },
+  "splitmesh": {
+    "name": "splitmesh",
+    "description": "Split mesh triangles according to a function.",
+    "signature": "Th = splitmesh(Th0, f);"
+  },
+  "sqrt": {
+    "name": "sqrt",
+    "description": "Square root",
+    "signature": "real s = sqrt(a);"
+  },
+  "square": {
+    "name": "square",
+    "description": "(1) Square of a number: square(a) → a². (2) Build a structured square mesh: square(nx, ny).",
+    "signature": "real S = square(a);"
+  },
+  "storagetotal": {
+    "name": "storagetotal",
+    "description": "C++ strtod function (Return the total storage in bytes.)",
+    "signature": "int total = storagetotal();"
+  },
+ "strtol": {
+    "name": "strtol",
+    "description": "Convert a string to a long integer.",
+    "signature": "int number = strtol(text, [base]);"
+  },
+  "swap": {
+    "name": "swap",
+    "description": "Swap values.",
+    "signature": "swap(a, b);"
+  },
+  "system": {
+    "name": "system",
+    "description": "Execute a system command.",
+    "signature": "int Res = system(Command);"
+  },
+  "tan": {
+    "name": "tan",
+    "description": "tan function.",
+    "signature": "real x = tan(theta);"
+  },
+  "tanh": {
+    "name": "tanh",
+    "description": "tanh function.",
+    "signature": "real x = tanh(theta);"
+  },
+  "tgamma": {
+    "name": "tgamma",
+    "description": "Calculate the Gamma function of x.",
+    "signature": "real tg = tgamma(x);"
+  },
+  "time": {
+    "name": "time",
+    "description": "Return the current time (C++ function).",
+    "signature": "real t = time();"
+  },
+  "trace": {
+    "name": "trace",
+    "description": "Matrix trace",
+    "signature": "real tr = trace([[1, 2], [3, 4]]);"
+  },
+  "trunc": {
+    "name": "trunc",
+    "description": "Split triangle of a mesh.",
+    "signature": "mesh Th = trunc(Th0, R, [split=Split], [label=Label]);"
+  },
+  "y0": {
+    "name": "y0",
+    "description": "Bessel function of second kind, order 0.",
+    "signature": "real B = y0(x);"
+  },
+  "y1": {
+    "name": "y1",
+    "description": "Bessel function of second kind, order 1.",
+    "signature": "real B = y1(x);"
+  },
+  "yn": {
+    "name": "yn",
+    "description": "Bessel function of second kind, order n.",
+    "signature": "real B = yn(n, x);"
+  }
+}
