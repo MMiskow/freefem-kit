@@ -567,7 +567,7 @@
   "square": {
     "name": "square",
     "description": "(1) Square of a number: square(a) → a². (2) Build a structured square mesh: square(nx, ny).",
-    "signature": "real S = square(a);"
+    "signature": "(1) real S = square(a);\n (2) mesh Th = square(nnX, nnY, [[L*x, H*y]], [flags=Flags], [label=Labels], [region=Region]);"
   },
   "storagetotal": {
     "name": "storagetotal",

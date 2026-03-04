@@ -44,9 +44,18 @@ export function activate(context: vscode.ExtensionContext) {
                 if (!entry || !entry.signature) {return null;}
 
                 // Extrait les paramètres entre parenthèses
-                const sigMatch = entry.signature.match(/\(([^)]*)\)/);
-                if (!sigMatch) {return null;}
-                const params = sigMatch[1];
+				const parenStart = entry.signature.indexOf('(');
+				const parenEnd = entry.signature.lastIndexOf(')');
+				const sigMatch = parenStart !== -1 && parenEnd !== -1 
+					? [null, entry.signature.substring(parenStart + 1, parenEnd)] 
+					: null;
+				if (!sigMatch) {return null;}
+
+				// Sépare obligatoires et optionnels
+				const allParams = sigMatch[1].split(',').map((p: string) => p.trim());
+				const required = allParams.filter((p: string) => !p.includes('='));
+				const hasOptional = allParams.some((p: string) => p.includes('='));
+				const params = required.join(', ') + (hasOptional ? ', ...opts' : '');
 
                 const signature = new vscode.SignatureInformation(
                     `${funcName}(${params})`,
@@ -63,6 +72,36 @@ export function activate(context: vscode.ExtensionContext) {
         },
         '(', ','  // triggers
     );
+
+	const hoverProvider = vscode.languages.registerHoverProvider(
+		{ scheme: 'file', language: 'freefem' },
+		{
+			provideHover(document, position) {
+				const wordRange = document.getWordRangeAtPosition(position);
+				if (!wordRange) {return null;}
+
+				const word = document.getText(wordRange).toLowerCase();
+				const entry = db[word];
+				if (!entry) {return null;}
+
+				const md = new vscode.MarkdownString();
+
+				if (entry.description) {
+					md.appendMarkdown(`**${word}** — ${entry.description}\n\n`);
+				}
+
+				if (entry.signature) {
+					md.appendCodeblock(entry.signature, 'freefem');
+				}
+
+				md.appendMarkdown(`[See the documentation](https://doc.freefem.org/references/functions.html#${word})`);
+
+				return new vscode.Hover(md);
+			}
+		}
+	);
+
+	context.subscriptions.push(hoverProvider);
 
     context.subscriptions.push(completionProvider);
     context.subscriptions.push(signatureProvider);
