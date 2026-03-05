@@ -445,7 +445,98 @@ export function activate(context: vscode.ExtensionContext) {
             }
         }
     );
+    
+    // Adding colors in front of labels
 
+    const labelColors: Record<number, vscode.Color> = {
+        1: new vscode.Color(1, 0.2, 0.2, 1),    // rouge
+        2: new vscode.Color(0.2, 0.8, 0.2, 1),  // vert
+        3: new vscode.Color(0.2, 0.4, 1, 1),    // bleu
+        4: new vscode.Color(1, 0.8, 0.2, 1),    // jaune
+        5: new vscode.Color(0.8, 0.2, 1, 1),    // violet
+        6: new vscode.Color(0.2, 0.9, 0.9, 1),  // cyan
+        7: new vscode.Color(1, 0.5, 0.2, 1),    // orange
+        8: new vscode.Color(0.9, 0.4, 0.7, 1),  // rose
+    };
+
+    function getLabelColor(label: number): vscode.Color {
+        if (labelColors[label]) { return labelColors[label]; }
+        // Pour les labels > 8, génère une couleur à partir du numéro
+        const hue = (label * 137.5) % 360;
+        const r = Math.abs(Math.sin(hue * Math.PI / 180)) * 0.8 + 0.2;
+        const g = Math.abs(Math.sin((hue + 120) * Math.PI / 180)) * 0.8 + 0.2;
+        const b = Math.abs(Math.sin((hue + 240) * Math.PI / 180)) * 0.8 + 0.2;
+        return new vscode.Color(r, g, b, 1);
+    }
+
+    const colorProvider = vscode.languages.registerColorProvider(
+        { scheme: 'file', language: 'freefem' },
+        {
+            provideDocumentColors(document) {
+                const text = document.getText();
+                const colors: vscode.ColorInformation[] = [];
+
+                // 1. Collecter les labels définis dans les borders
+                const definedLabels = new Set<number>();
+                const labelDefRegex = /\blabel\s*=\s*(\d+)/g;
+                let match;
+                while ((match = labelDefRegex.exec(text)) !== null) {
+                    definedLabels.add(parseInt(match[1]));
+                }
+
+                // Si aucun label défini, on ne colorie rien
+                if (definedLabels.size === 0) { return []; }
+
+                // 2. Colorier les label=N
+                const labelRegex = /\blabel\s*=\s*(\d+)/g;
+                while ((match = labelRegex.exec(text)) !== null) {
+                    const label = parseInt(match[1]);
+                    if (!definedLabels.has(label)) { continue; }
+                    const labelStart = match.index + match[0].length - match[1].length;
+                    const start = document.positionAt(labelStart);
+                    const end = document.positionAt(labelStart + match[1].length);
+                    colors.push(new vscode.ColorInformation(new vscode.Range(start, end), getLabelColor(label)));
+                }
+
+                // 3. Colorier on(1, 2, 3, 4, uh=0)
+                const onRegex = /\bon\s*\(([^)]+)\)/g;
+                while ((match = onRegex.exec(text)) !== null) {
+                    const args = match[1];
+                    const numRegex = /(\d+)/g;
+                    let numMatch;
+                    while ((numMatch = numRegex.exec(args)) !== null) {
+                        if (args.substring(0, numMatch.index).includes('=')) { break; }
+                        const label = parseInt(numMatch[1]);
+                        if (!definedLabels.has(label)) { continue; }
+                        const labelStart = match.index + match[0].indexOf('(') + 1 + numMatch.index;
+                        const start = document.positionAt(labelStart);
+                        const end = document.positionAt(labelStart + numMatch[1].length);
+                        colors.push(new vscode.ColorInformation(new vscode.Range(start, end), getLabelColor(label)));
+                    }
+                }
+
+                // 4. Colorier int1d/int2d/int3d(Th, N)
+                const intRegex = /\b(?:int[123]d|intalledges|intallfaces)\s*\(\s*\w+\s*,\s*(\d+)/g;
+                while ((match = intRegex.exec(text)) !== null) {
+                    if (!match[1]) { continue; }
+                    const label = parseInt(match[1]);
+                    if (!definedLabels.has(label)) { continue; }
+                    const labelStart = match.index + match[0].length - match[1].length;
+                    const start = document.positionAt(labelStart);
+                    const end = document.positionAt(labelStart + match[1].length);
+                    colors.push(new vscode.ColorInformation(new vscode.Range(start, end), getLabelColor(label)));
+                }
+
+                return colors;
+            },
+
+            provideColorPresentations(color) {
+                return [];
+            }
+        }
+    );
+
+    context.subscriptions.push(colorProvider);
     context.subscriptions.push(symbolProvider);
     context.subscriptions.push(hoverProvider);
     context.subscriptions.push(completionProvider);
