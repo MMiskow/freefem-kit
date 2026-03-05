@@ -24,13 +24,13 @@
     "description": "Adjacent triangle of the triangle k by the edge e",
     "signature": "int T = Th[k].adj(e);"
   },
-  "affinecg": {
-    "name": "affinecg",
+  "AffineCG": {
+    "name": "AffineCG",
     "description": "Affine conjugate gradient solver",
     "signature": "int Conv = AffineCG(A, x, precon=Precon, nbiter=NbIter, eps=Eps, veps=VEps, stop=Stop);"
   },
-  "affinegmres": {
-    "name": "affinegmres",
+  "AffineGMRES": {
+    "name": "AffineGMRES",
     "description": "Affine GMRES solver",
     "signature": "int Conv = AffineGMRES(A, x, precon=Precon, nbiter=NbIter, eps=Eps, veps=VEps, stop=Stop);"
   },
@@ -83,10 +83,30 @@
     "name": "bfgs",
     "description": "BFGS optimization algorithm."
   },
+  "boundingbox": {
+    "name": "boundingbox",
+    "description": "Return the bounding box of a mesh.",
+    "signature": "real[int] bb(4); boundingbox(Th, bb);"
+  },
+  "buildlayers": {
+    "name": "buildlayers",
+    "description": "Build a 3D mesh by extruding a 2D mesh into layers.",
+    "signature": "mesh3 Th3 = buildlayers(Th, NbLayers, [zbound=[zmin, zmax]], [coef=Coef], [region=Region], [labelmid=LabelMid], [labelup=LabelUp], [labeldown=LabelDown]);"
+  },
   "buildmesh": {
     "name": "buildmesh",
     "description": "Build a 2D mesh using border elements.",
     "signature": "mesh Th = buildmesh(b1(nn) + b2(nn) + b3(nn) + b4(nn),[points=Points], ][nbvx=Nbvx], [fixedborder=FixedBorder]);"
+  },
+  "buildmeshL": {
+    "name": "buildmeshL",
+    "description": "Build a 1D curve mesh (meshL) from border elements.",
+    "signature": "meshL ThL = buildmeshL(b1(nn) + b2(nn), [ptmerge=PtMerge]);"
+  },
+"buildmeshS": {
+    "name": "buildmeshS",
+    "description": "Build a 3D surface mesh (meshS) from border elements.",
+    "signature": "meshS ThS = buildmeshS(b1(nn) + b2(nn), [ptmerge=PtMerge]);"
   },
   "ceil": {
     "name": "ceil",
@@ -113,8 +133,8 @@
     "description": "Get the clock in second.",
     "signature": "real t = clock();"
   },
-  "complexeigenvalue": {
-    "name": "complexeigenvalue",
+  "complexEigenValue": {
+    "name": "complexEigenValue",
     "description": "Same as EigenValue for complex problems.",
     "signature":"int k = complexEigenValue(A, B, nev=Nev, sigma=Sigma);"
   },
@@ -223,8 +243,8 @@
     "description": "z double derivative.",
     "signature": "Uh upp = dzz(u);"
   },
-  "eigenvalue": {
-    "name": "eigenvalue",
+  "EigenValue": {
+    "name": "EigenValue",
     "description": "Compute the generalized eigenvalue of Au=lambda Bu. The shifted-inverse method is used by default with sigma=sigma, the shift of the method. The function EigenValue can be used for either matrices or functions returning a matrix vector product.",
     "signature": "int k = EigenValue(A,B,nev= , sigma= );"
   },
@@ -283,6 +303,11 @@
     "description": "Remainder of a/b (cmath function).",
     "signature": "real Mod = fmod(a, b);"
   },
+  "getline": {
+    "name": "getline",
+    "description": "Read a line from an input stream.",
+    "signature": "getline(cin, s);"
+  },
   "imag": {
     "name": "imag",
     "description": "Imaginary part of a complex number.",
@@ -333,18 +358,18 @@
     "description": "Arithmetic useful function.",
     "signature": "invdiffpos(a, b) = (a<b) ? 1./(b-a) : 0"
   },
-  "isinf": {
-    "name": "isinf",
+  "isInf": {
+    "name": "isInf",
     "description": "The C++ isInf function.",
     "signature": "bool b = isInf(a);"
   },
-  "isnan": {
-    "name": "isnan",
+  "isNaN": {
+    "name": "isNaN",
     "description": "The C++ isNan function.",
     "signature": "bool b = isNaN(a);"
   },
-  "isnormal": {
-    "name": "isnormal",
+  "isNormal": {
+    "name": "isNormal",
     "description": "The C++ isNormal function.",
     "signature": "bool b = isNormal(a);"
   },
@@ -368,14 +393,14 @@
     "description": "Jump function across an edge.",
     "signature": "jump(c)"
   },
-  "linearcg": {
-    "name": "linearcg",
+  "LinearCG": {
+    "name": "LinearCG",
     "description": "Linear CG solver",
     "signature": "int Conv = LinearCG(A, x, precon=Precon, nbiter=NbIter, eps=Eps, veps=VEps, stop=Stop);"
     
   },
-  "lineargmres": {
-    "name": "lineargmres",
+  "LinearGMRES": {
+    "name": "LinearGMRES",
     "description": "Linear GMRES solver",
     "signature": "int Conv = LinearGMRES(A, x, precon=Precon, nbiter=NbIter, eps=Eps, veps=VEps, stop=Stop);"
   },
@@ -424,13 +449,23 @@
     "description": "Move a mesh.",
     "signature": "mesh MovedTh = movemesh(Th, [Dx, Dy]); mesh3 MovedTh = movemesh(Th, [Dx, Dy, Dz], [region=Region], [label=Label], [facemerge=FaceMerge], [ptmerge=PtMerge], [orientation=Orientation]);"
   },
-  "nan": {
-    "name": "nan",
+  "movemesh23": {
+    "name": "movemesh23",
+    "description": "Move a 2D mesh into a 3D surface mesh using a transformation.",
+    "signature": "meshS Th3 = movemesh23(Th, transfo=[Dx, Dy, Dz], [label=Label], [region=Region], [orientation=Orientation]);"
+  },
+"movemesh3": {
+    "name": "movemesh3",
+    "description": "Move a 3D mesh using a displacement field.",
+    "signature": "mesh3 MovedTh = movemesh3(Th, transfo=[Dx, Dy, Dz], [region=Region], [label=Label], [ptmerge=PtMerge]);"
+  },
+  "NaN": {
+    "name": "NaN",
     "description": "C++ nan function.",
     "signature": "real n = NaN([String]);"
   },
-  "nlcg": {
-    "name": "nlcg",
+  "NLCG": {
+    "name": "NLCG",
     "description": "Non-linear conjugate gradient.",
     "signature": "int Conv = NLCG(DJ, u, nbiter=NbIter, eps=Eps);"
   },
@@ -509,6 +544,11 @@
     "description": "Return the real part of a complex number.",
     "signature": "real r = real(c);"
   },
+  "regions": {
+    "name": "regions",
+    "description": "Return the list of region labels of a mesh.",
+    "signature": "int[int] R = regions(Th);"
+ },
   "rint": {
     "name": "rint",
     "description": "Integer value nearest to x (real value).",
@@ -523,6 +563,11 @@
     "name": "savemesh",
     "description": "Save a 2D or 3D mesh in different formats (see Mesh Generation 2D and Mesh Generation 3D).",
     "signature": "savemesh(Th, MeshFileName);"
+  },
+  "seekg": {
+    "name": "seekg",
+    "description": "Set the position of the next character to be read from the input stream.",
+    "signature": "f.seekg(pos);"
   },
   "set": {
     "name": "set",
@@ -574,6 +619,11 @@
     "description": "C++ strtod function (Return the total storage in bytes.)",
     "signature": "int total = storagetotal();"
   },
+  "storageused": {
+    "name": "storageused",
+    "description": "Return the current memory usage in bytes.",
+    "signature": "int used = storageused();"
+  },
  "strtol": {
     "name": "strtol",
     "description": "Convert a string to a long integer.",
@@ -598,6 +648,11 @@
     "name": "tanh",
     "description": "tanh function.",
     "signature": "real x = tanh(theta);"
+  },
+  "tellg": {
+    "name": "tellg",
+    "description": "Return the position of the current character in the input stream.",
+    "signature": "int pos = f.tellg();"
   },
   "tgamma": {
     "name": "tgamma",

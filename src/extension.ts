@@ -308,8 +308,8 @@ export function activate(context: vscode.ExtensionContext) {
                 const match = textBeforeCursor.match(/([a-zA-Z][a-zA-Z0-9]*)\s*\(([^)]*)$/);
                 if (!match) { return null; }
 
-                const funcName = match[1].toLowerCase();
-                const entry = db[funcName];
+                const funcName = match[1];
+                const entry = db[funcName] || db[funcName.toLowerCase()];
                 if (!entry || !entry.signature) { return null; }
 
                 const parenStart = entry.signature.indexOf('(');
@@ -351,8 +351,8 @@ export function activate(context: vscode.ExtensionContext) {
                 const wordRange = document.getWordRangeAtPosition(position);
                 if (!wordRange) { return null; }
 
-                const word = document.getText(wordRange).toLowerCase();
-                const entry = db[word];
+                const word = document.getText(wordRange);
+                const entry = db[word] || db[word.toLowerCase()];
                 if (!entry) { return null; }
 
                 const md = new vscode.MarkdownString();
