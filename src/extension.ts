@@ -207,6 +207,25 @@ export function activate(context: vscode.ExtensionContext) {
                     return item;
                 });
 
+                // Local variables - root
+                const text = document.getText();
+                const varRegex = /\b(mesh|mesh3|meshS|meshL|fespace|matrix|real|int|complex|bool|string|func|varf)\s+(\w+)/g;
+                let varMatch;
+                const localVarItems: vscode.CompletionItem[] = [];
+                const seen = new Set<string>();
+
+                while ((varMatch = varRegex.exec(text)) !== null) {
+                    const varType = varMatch[1];
+                    const varName = varMatch[2];
+                    if (!seen.has(varName)) {
+                        seen.add(varName);
+                        const item = new vscode.CompletionItem(varName, vscode.CompletionItemKind.Variable);
+                        item.detail = varType;
+                        item.documentation = new vscode.MarkdownString(`Local variable of type \`${varType}\`.`);
+                        localVarItems.push(item);
+                    }
+                }
+
                 // Contexte solver=
                 if (textBeforeCursor.match(/solver\s*=\s*$/)) {
                     return solverItems;
@@ -223,7 +242,7 @@ export function activate(context: vscode.ExtensionContext) {
                 }
 
                 // Par défaut
-                return [...funcItems, ...typeItems, ...feItems, ...globalItems];
+                return [...funcItems, ...typeItems, ...feItems, ...globalItems, ...localVarItems];
             }
         },
         '=', '"', ' ', ','
@@ -299,6 +318,40 @@ export function activate(context: vscode.ExtensionContext) {
         }
     );
 
+    const symbolProvider = vscode.languages.registerDocumentSymbolProvider(
+    { scheme: 'file', language: 'freefem' },
+    {
+        provideDocumentSymbols(document) {
+            const text = document.getText();
+            const symbols: vscode.DocumentSymbol[] = [];
+
+            const patterns: { regex: RegExp, kind: vscode.SymbolKind, label: string }[] = [
+                { regex: /\b(mesh|mesh3|meshS|meshL)\s+(\w+)/g, kind: vscode.SymbolKind.Object, label: 'mesh' },
+                { regex: /\bfespace\s+(\w+)/g, kind: vscode.SymbolKind.Class, label: 'fespace' },
+                { regex: /\b(real|int|complex|bool)\s+(\w+)/g, kind: vscode.SymbolKind.Variable, label: 'variable' },
+                { regex: /\bproblem\s+(\w+)/g, kind: vscode.SymbolKind.Function, label: 'problem' },
+                { regex: /\bvarf\s+(\w+)/g, kind: vscode.SymbolKind.Function, label: 'varf' },
+                { regex: /\bmacro\s+(\w+)/g, kind: vscode.SymbolKind.Module, label: 'macro' },
+                { regex: /\bfunc\s+(\w+)/g, kind: vscode.SymbolKind.Function, label: 'func' },
+            ];
+
+            for (const { regex, kind, label } of patterns) {
+                let match;
+                while ((match = regex.exec(text)) !== null) {
+                    const name = match[2] ?? match[1];
+                    const pos = document.positionAt(match.index);
+                    const range = new vscode.Range(pos, pos.translate(0, match[0].length));
+                    const symbol = new vscode.DocumentSymbol(name, label, kind, range, range);
+                    symbols.push(symbol);
+                }
+            }
+
+            return symbols;
+            }
+        }
+    );
+
+    context.subscriptions.push(symbolProvider);
     context.subscriptions.push(hoverProvider);
     context.subscriptions.push(completionProvider);
     context.subscriptions.push(signatureProvider);
