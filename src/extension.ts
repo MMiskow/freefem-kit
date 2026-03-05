@@ -36,52 +36,48 @@ export function activate(context: vscode.ExtensionContext) {
     };
 
     const freefemFESpaces: Record<string, string> = {
-    // most common
-    'P1': 'Piecewise linear finite element, continuous (2D).',
-    'P2': 'Piecewise quadratic finite element, continuous (2D).',
-    'P0': 'Piecewise constant finite element (2D).',
-    'P1dc': 'Piecewise linear finite element, discontinuous.',
-    'P2dc': 'Piecewise quadratic finite element, discontinuous.',
-    'RT0': 'Raviart-Thomas finite element of order 0 (2D).',
-    'P1b': 'P1 with bubble function (2D).',
-    'P1nc': 'P1 non-conforming finite element.',
-    // 3D
-    'P13d': 'Piecewise linear finite element, continuous (3D).',
-    'P23d': 'Piecewise quadratic finite element, continuous (3D).',
-    'P03d': 'Piecewise constant finite element (3D).',
-    'RT03d': 'Raviart-Thomas finite element of order 0 (3D).',
-    'Edge03d': '3D Nedelec edge element of order 0.',
-    // plugin necessary
-    'P3': 'Piecewise cubic finite element (requires load "Element_P3").',
-    'P4': 'Piecewise quartic finite element (requires load "Element_P4").',
-    'P5': 'Piecewise quintic finite element (requires load "Element_P3").',
-    'P3dc': 'Piecewise cubic finite element, discontinuous (requires load "Element_P3dc").',
-    'P4dc': 'Piecewise quartic finite element, discontinuous (requires load "Element_P4dc").',
-    'P5dc': 'Piecewise quintic finite element, discontinuous (requires load "Element_P3dc").',
-    'P1Edge': 'P1 edge finite element (requires load "Element_PkEdge").',
-    'P2Edge': 'P2 edge finite element (requires load "Element_PkEdge").',
-    'P3Edge': 'P3 edge finite element (requires load "Element_PkEdge").',
-    'P4Edge': 'P4 edge finite element (requires load "Element_PkEdge").',
-    'P5Edge': 'P5 edge finite element (requires load "Element_PkEdge").',
-    'RT1': 'Raviart-Thomas finite element of order 1 (requires load "Element_Mixte").',
-    'RT1Ortho': 'Raviart-Thomas orthogonal finite element of order 1 (requires load "Element_Mixte").',
-    'RT2': 'Raviart-Thomas finite element of order 2 (requires load "Element_Mixte").',
-    'RT2Ortho': 'Raviart-Thomas orthogonal finite element of order 2 (requires load "Element_Mixte").',
-    'BDM1': 'Brezzi-Douglas-Marini finite element of order 1 (requires load "Element_Mixte").',
-    'BDM1Ortho': 'Brezzi-Douglas-Marini orthogonal finite element of order 1 (requires load "Element_Mixte").',
-    'Edge13d': '3D Nedelec edge element of order 1 (requires load "Element_Mixte3d").',
-    'Edge23d': '3D Nedelec edge element of order 2 (requires load "Element_Mixte3d").',
-    'P2Morley': 'Morley finite element (requires load "Morley").',
-    'HCT': 'Hsieh-Clough-Tocher finite element (requires load "HCT").',
-    'P2BR': 'Bernardi-Raugel finite element (requires load "BernardiRaugel").',
-    // Others
-    'P2h': 'Piecewise quadratic finite element with hierarchical basis.',
-    'P1b3d': 'P1 with bubble function (3D).',
-    'P1bl': 'P1 with local bubble function (2D).',
-    'P1bl3d': 'P1 with local bubble function (3D).',
-    'P0Edge': 'Piecewise constant edge finite element.',
-    'RT0Ortho': 'Raviart-Thomas orthogonal finite element of order 0.',
-    'FEQF': 'Quadrature formula finite element.',
+        'P1': 'Piecewise linear finite element, continuous (2D).',
+        'P2': 'Piecewise quadratic finite element, continuous (2D).',
+        'P0': 'Piecewise constant finite element (2D).',
+        'P1dc': 'Piecewise linear finite element, discontinuous.',
+        'P2dc': 'Piecewise quadratic finite element, discontinuous.',
+        'RT0': 'Raviart-Thomas finite element of order 0 (2D).',
+        'P1b': 'P1 with bubble function (2D).',
+        'P1nc': 'P1 non-conforming finite element.',
+        'P13d': 'Piecewise linear finite element, continuous (3D).',
+        'P23d': 'Piecewise quadratic finite element, continuous (3D).',
+        'P03d': 'Piecewise constant finite element (3D).',
+        'RT03d': 'Raviart-Thomas finite element of order 0 (3D).',
+        'Edge03d': '3D Nedelec edge element of order 0.',
+        'P3': 'Piecewise cubic finite element (requires load "Element_P3").',
+        'P4': 'Piecewise quartic finite element (requires load "Element_P4").',
+        'P5': 'Piecewise quintic finite element (requires load "Element_P3").',
+        'P3dc': 'Piecewise cubic finite element, discontinuous (requires load "Element_P3dc").',
+        'P4dc': 'Piecewise quartic finite element, discontinuous (requires load "Element_P4dc").',
+        'P5dc': 'Piecewise quintic finite element, discontinuous (requires load "Element_P3dc").',
+        'P1Edge': 'P1 edge finite element (requires load "Element_PkEdge").',
+        'P2Edge': 'P2 edge finite element (requires load "Element_PkEdge").',
+        'P3Edge': 'P3 edge finite element (requires load "Element_PkEdge").',
+        'P4Edge': 'P4 edge finite element (requires load "Element_PkEdge").',
+        'P5Edge': 'P5 edge finite element (requires load "Element_PkEdge").',
+        'RT1': 'Raviart-Thomas finite element of order 1 (requires load "Element_Mixte").',
+        'RT1Ortho': 'Raviart-Thomas orthogonal finite element of order 1 (requires load "Element_Mixte").',
+        'RT2': 'Raviart-Thomas finite element of order 2 (requires load "Element_Mixte").',
+        'RT2Ortho': 'Raviart-Thomas orthogonal finite element of order 2 (requires load "Element_Mixte").',
+        'BDM1': 'Brezzi-Douglas-Marini finite element of order 1 (requires load "Element_Mixte").',
+        'BDM1Ortho': 'Brezzi-Douglas-Marini orthogonal finite element of order 1 (requires load "Element_Mixte").',
+        'Edge13d': '3D Nedelec edge element of order 1 (requires load "Element_Mixte3d").',
+        'Edge23d': '3D Nedelec edge element of order 2 (requires load "Element_Mixte3d").',
+        'P2Morley': 'Morley finite element (requires load "Morley").',
+        'HCT': 'Hsieh-Clough-Tocher finite element (requires load "HCT").',
+        'P2BR': 'Bernardi-Raugel finite element (requires load "BernardiRaugel").',
+        'P2h': 'Piecewise quadratic finite element with hierarchical basis.',
+        'P1b3d': 'P1 with bubble function (3D).',
+        'P1bl': 'P1 with local bubble function (2D).',
+        'P1bl3d': 'P1 with local bubble function (3D).',
+        'P0Edge': 'Piecewise constant edge finite element.',
+        'RT0Ortho': 'Raviart-Thomas orthogonal finite element of order 0.',
+        'FEQF': 'Quadrature formula finite element.',
     };
 
     const freefemGlobals: Record<string, string> = {
@@ -207,13 +203,13 @@ export function activate(context: vscode.ExtensionContext) {
                     return item;
                 });
 
-                // Local variables - root
                 const text = document.getText();
-                const varRegex = /\b(mesh|mesh3|meshS|meshL|fespace|matrix|real|int|complex|bool|string|func|varf)\s+(\w+)/g;
-                let varMatch;
                 const localVarItems: vscode.CompletionItem[] = [];
                 const seen = new Set<string>();
 
+                // Types statiques
+                const varRegex = /\b(mesh|mesh3|meshS|meshL|fespace|matrix|real|int|complex|bool|string|func|varf)\s+(\w+)/g;
+                let varMatch;
                 while ((varMatch = varRegex.exec(text)) !== null) {
                     const varType = varMatch[1];
                     const varName = varMatch[2];
@@ -226,26 +222,80 @@ export function activate(context: vscode.ExtensionContext) {
                     }
                 }
 
-                // Contexte solver=
+                // Variables fespace dynamiques (Vh uh, vh etc.)
+                const fespaceNames = new Set<string>();
+                const fespaceRegex = /\bfespace\s+(\w+)/g;
+                let fm;
+                while ((fm = fespaceRegex.exec(text)) !== null) {
+                    fespaceNames.add(fm[1]);
+                }
+                for (const feName of fespaceNames) {
+                    const feVarRegex = new RegExp(`\\b${feName}\\s+([^\\n;=,(]+)`, 'g');
+                    let feMatch;
+                    while ((feMatch = feVarRegex.exec(text)) !== null) {
+                        const varNames = feMatch[1].split(',').map((v: string) => v.trim()).filter(v => /^\w+$/.test(v));
+                        for (const varName of varNames) {
+                            if (!seen.has(varName)) {
+                                seen.add(varName);
+                                const item = new vscode.CompletionItem(varName, vscode.CompletionItemKind.Variable);
+                                item.detail = feName;
+                                item.documentation = new vscode.MarkdownString(`Variable of fespace \`${feName}\`.`);
+                                localVarItems.push(item);
+                            }
+                        }
+                    }
+                }
+
+                // Problems, solve, varfs, funcs, macros, border
+                const declRegex = /\b(problem|solve|varf|func|macro|border)\s+(?:(?:real|int|complex|bool|string|mesh|mesh3|void)(?:\[[\w,]*\])?\s+)?(\w+)\s*(?:\(|=)/g;
+                let declMatch;
+                while ((declMatch = declRegex.exec(text)) !== null) {
+                    const declType = declMatch[1];
+                    const declName = declMatch[2] ?? declMatch[1];
+                    if (!seen.has(declName)) {
+                        seen.add(declName);
+                        const item = new vscode.CompletionItem(declName, vscode.CompletionItemKind.Function);
+                        item.detail = declType;
+                        item.documentation = new vscode.MarkdownString(`\`${declType}\` declaration.`);
+                        localVarItems.push(item);
+                    }
+                }
+
                 if (textBeforeCursor.match(/solver\s*=\s*$/)) {
                     return solverItems;
                 }
+                
+                // Contexte fespace Vh( — premier argument = mesh
+                if (textBeforeCursor.match(/fespace\s+\w+\s*\(\s*\w*$/)) {
+                    const meshRegex = /\b(mesh|mesh3|meshS|meshL)\s+(\w+)/g;
+                    const meshItems: vscode.CompletionItem[] = [];
+                    const seenMesh = new Set<string>();
+                    let meshMatch;
+                    while ((meshMatch = meshRegex.exec(text)) !== null) {
+                        const meshType = meshMatch[1];
+                        const meshName = meshMatch[2];
+                        if (!seenMesh.has(meshName)) {
+                            seenMesh.add(meshName);
+                            const item = new vscode.CompletionItem(meshName, vscode.CompletionItemKind.Variable);
+                            item.detail = meshType;
+                            item.documentation = new vscode.MarkdownString(`Mesh of type \`${meshType}\`.`);
+                            meshItems.push(item);
+                        }
+                    }
+                    return meshItems;
+                }
 
-                // Contexte fespace Vh(Th,
                 if (textBeforeCursor.match(/fespace\s+\w+\s*\(\s*\w+\s*,\s*\w*$/)) {
                     return feItems;
                 }
-
-                // Contexte load "
                 if (textBeforeCursor.match(/load\s*"\s*\w*$/)) {
                     return pluginItems;
                 }
 
-                // Par défaut
                 return [...funcItems, ...typeItems, ...feItems, ...globalItems, ...localVarItems];
             }
         },
-        '=', '"', ' ', ','
+        '=', '"', ',', '('
     );
 
     const signatureProvider = vscode.languages.registerSignatureHelpProvider(
@@ -269,10 +319,14 @@ export function activate(context: vscode.ExtensionContext) {
                     : null;
                 if (!sigMatch) { return null; }
 
+                const noSimplify = ['int1d', 'int2d', 'int3d', 'intalledges', 'intallfaces'];
+
                 const allParams = sigMatch[1].split(',').map((p: string) => p.trim());
                 const required = allParams.filter((p: string) => !p.includes('='));
                 const hasOptional = allParams.some((p: string) => p.includes('='));
-                const params = required.join(', ') + (hasOptional ? ', ...opts' : '');
+                const params = noSimplify.includes(funcName)
+                    ? sigMatch[1]
+                    : required.join(', ') + (hasOptional ? ', ...opts' : '');
 
                 const signature = new vscode.SignatureInformation(
                     `${funcName}(${params})`,
@@ -318,35 +372,76 @@ export function activate(context: vscode.ExtensionContext) {
         }
     );
 
-    const symbolProvider = vscode.languages.registerDocumentSymbolProvider(
-    { scheme: 'file', language: 'freefem' },
-    {
-        provideDocumentSymbols(document) {
-            const text = document.getText();
-            const symbols: vscode.DocumentSymbol[] = [];
+        const symbolProvider = vscode.languages.registerDocumentSymbolProvider(
+        { scheme: 'file', language: 'freefem' },
+        {
+            provideDocumentSymbols(document) {
+                const rawText = document.getText();
+                // Strip line comments and string contents, preserving line structure
+                const text = rawText.split('\n').map(line => {
+                    // Remove line comments
+                    const commentIdx = line.indexOf('//');
+                    const stripped = commentIdx >= 0 ? line.substring(0, commentIdx) : line;
+                    // Remove string contents (replace "..." with "" of same length to preserve indices approx)
+                    return stripped.replace(/"[^"]*"/g, '""');
+                }).join('\n');
 
-            const patterns: { regex: RegExp, kind: vscode.SymbolKind, label: string }[] = [
-                { regex: /\b(mesh|mesh3|meshS|meshL)\s+(\w+)/g, kind: vscode.SymbolKind.Object, label: 'mesh' },
-                { regex: /\bfespace\s+(\w+)/g, kind: vscode.SymbolKind.Class, label: 'fespace' },
-                { regex: /\b(real|int|complex|bool)\s+(\w+)/g, kind: vscode.SymbolKind.Variable, label: 'variable' },
-                { regex: /\bproblem\s+(\w+)/g, kind: vscode.SymbolKind.Function, label: 'problem' },
-                { regex: /\bvarf\s+(\w+)/g, kind: vscode.SymbolKind.Function, label: 'varf' },
-                { regex: /\bmacro\s+(\w+)/g, kind: vscode.SymbolKind.Module, label: 'macro' },
-                { regex: /\bfunc\s+(\w+)/g, kind: vscode.SymbolKind.Function, label: 'func' },
-            ];
+                const symbols: vscode.DocumentSymbol[] = [];
+                const seenSymbols = new Set<string>();
+                const seenFEVars = new Set<string>();
 
-            for (const { regex, kind, label } of patterns) {
-                let match;
-                while ((match = regex.exec(text)) !== null) {
-                    const name = match[2] ?? match[1];
-                    const pos = document.positionAt(match.index);
-                    const range = new vscode.Range(pos, pos.translate(0, match[0].length));
-                    const symbol = new vscode.DocumentSymbol(name, label, kind, range, range);
-                    symbols.push(symbol);
+                const patterns: { regex: RegExp, kind: vscode.SymbolKind, label: string }[] = [
+                    { regex: /\bfunc\s+(?:(?:real|int|complex|bool|string|mesh|mesh3|void)(?:\[[\w,]*\])?\s+)?(\w+)\s*(?:\(|=)/g, kind: vscode.SymbolKind.Function, label: 'func' },
+                    { regex: /\b(mesh|mesh3|meshS|meshL)\s+(\w+)/g, kind: vscode.SymbolKind.Object, label: 'mesh' },
+                    { regex: /\bfespace\s+(\w+)/g, kind: vscode.SymbolKind.Class, label: 'fespace' },
+                    { regex: /\b(real|complex|bool)\s+(\w+)/g, kind: vscode.SymbolKind.Variable, label: 'variable' },
+                    { regex: /\bint\s+(\w+)\s*[=;,)]/g, kind: vscode.SymbolKind.Variable, label: 'variable' },
+                    { regex: /\bproblem\s+(\w+)/g, kind: vscode.SymbolKind.Function, label: 'problem' },
+                    { regex: /\bsolve\s+(\w+)/g, kind: vscode.SymbolKind.Function, label: 'solve' },
+                    { regex: /\bvarf\s+(\w+)/g, kind: vscode.SymbolKind.Function, label: 'varf' },
+                    { regex: /\bmacro\s+(\w+)/g, kind: vscode.SymbolKind.Module, label: 'macro' },
+                    { regex: /\bborder\s+(\w+)/g, kind: vscode.SymbolKind.Interface, label: 'border' }
+                ];
+
+                for (const { regex, kind, label } of patterns) {
+                    let match;
+                    while ((match = regex.exec(text)) !== null) {
+                        // Pour func avec type de retour, le nom est dans match[2], sinon match[2] ?? match[1]
+                        const name = match[2] ?? match[1];
+                        if (!name || name.length === 0) { continue; }
+                        const pos = document.positionAt(match.index);
+                        const range = new vscode.Range(pos, pos.translate(0, match[0].length));
+                        if (!seenSymbols.has(name)) {
+                            seenSymbols.add(name);
+                            symbols.push(new vscode.DocumentSymbol(name, label, kind, range, range));
+                        }
+                    }
                 }
-            }
 
-            return symbols;
+                const fespaceNames = new Set<string>();
+                const fespaceRegex = /\bfespace\s+(\w+)/g;
+                let fm;
+                while ((fm = fespaceRegex.exec(text)) !== null) {
+                    fespaceNames.add(fm[1]);
+                }
+
+                for (const feName of fespaceNames) {
+                    const feVarRegex = new RegExp(`\\b${feName}\\s+([^\\n;=,(]+)`, 'g');
+                    let feMatch;
+                    while ((feMatch = feVarRegex.exec(text)) !== null) {
+                        const varNames = feMatch[1].split(',').map((v: string) => v.trim()).filter(v => /^\w+$/.test(v));
+                        for (const varName of varNames) {
+                            const pos = document.positionAt(feMatch.index);
+                            const range = new vscode.Range(pos, pos.translate(0, feMatch[0].length));
+                            if (!seenFEVars.has(varName)) {
+                                seenFEVars.add(varName);
+                                symbols.push(new vscode.DocumentSymbol(varName, feName, vscode.SymbolKind.Variable, range, range));
+                            }
+                        }
+                    }
+                }
+
+                return symbols;
             }
         }
     );
